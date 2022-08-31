@@ -18,10 +18,10 @@ interface IRequest {
 class CreateOrderService {
   public async execute({ customer_id, products }: IRequest): Promise<Order> {
     const ordersRepository = getCustomRepository(OrdersRepository);
-    const customerRepository = getCustomRepository(CustomersRepository);
+    const customersRepository = getCustomRepository(CustomersRepository);
     const productsRepository = getCustomRepository(ProductRepository);
 
-    const customerExists = await customerRepository.findById(customer_id);
+    const customerExists = await customersRepository.findById(customer_id);
 
     if (!customerExists) {
       throw new AppError('Could not find any customer with the given id.');
@@ -74,7 +74,7 @@ class CreateOrderService {
     const updatedProductQuantity = order_products.map(product => ({
       id: product.id,
       quantity:
-        existsProducts.filter(p => p.id === product.id)[0].quantity -
+        existsProducts.filter(p => p.id === product.product_id)[0].quantity -
         product.quantity,
     }));
 
