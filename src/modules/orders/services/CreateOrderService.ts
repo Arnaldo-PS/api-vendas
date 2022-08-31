@@ -36,7 +36,7 @@ class CreateOrderService {
     const existsProductsIds = existsProducts.map(product => product.id);
 
     const checkInexistentProducts = products.filter(
-      product => !existsProducts.includes(product.id),
+      product => !existsProductsIds.includes(product.id),
     );
 
     if (checkInexistentProducts.length) {
@@ -57,6 +57,30 @@ class CreateOrderService {
          is not available for ${quantityAvailable[0].id}.`,
       );
     }
+
+    const serializedProducts = products.map(product => ({
+      product_id: product.id,
+      quantity: product.quantity,
+      price: existsProducts.filter(p => p.id === product.id)[0].price,
+    }));
+
+    const order = await ordersRepository.createOrder({
+      customer: customerExists,
+      products: serializedProducts,
+    });
+
+    const { order_products } = order;
+
+    const updatedProductQuantity = order_products.map(product => ({
+      id: product.id,
+      quantity:
+        existsProducts.filter(p => p.id === product.id)[0].quantity -
+        product.quantity,
+    }));
+
+    await productsRepository.save(updatedProductQuantity);
+
+    return order;
   }
 }
 
