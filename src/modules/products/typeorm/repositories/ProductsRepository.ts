@@ -6,7 +6,7 @@ interface IFindProducts {
 }
 
 @EntityRepository(Product)
-class ProductRepository extends Repository<Product> {
+class ProductsRepository extends Repository<Product> {
   public async findByName(name: string): Promise<Product | undefined> {
     const product = this.findOne({
       where: {
@@ -30,4 +30,4 @@ class ProductRepository extends Repository<Product> {
   }
 }
 
-export default ProductRepository;
+export default ProductsRepository;
