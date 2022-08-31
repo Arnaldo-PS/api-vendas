@@ -3,7 +3,7 @@ version: "3"
 services:
   app:
     build: .
-    command: sh -c "npm run dev"
+    command: sh -c "npm run typeorm migration:run && npm run dev"
     container_name: apivendas-app
     ports:
       - "3333:3333"
