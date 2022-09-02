@@ -27,7 +27,7 @@ class CreateOrderService {
       throw new AppError('Could not find any customer with the given id.');
     }
 
-    const existsProducts = await productsRepository.findAllbyIds(products);
+    const existsProducts = await productsRepository.findAllByIds(products);
 
     if (!existsProducts.length) {
       throw new AppError('Could not find any products with the given ids.');
@@ -35,13 +35,13 @@ class CreateOrderService {
 
     const existsProductsIds = existsProducts.map(product => product.id);
 
-    const checkInexistentProducts = products.filter(
+    const checkNonExistingProducts = products.filter(
       product => !existsProductsIds.includes(product.id),
     );
 
-    if (checkInexistentProducts.length) {
+    if (checkNonExistingProducts.length) {
       throw new AppError(
-        `Could not find product ${checkInexistentProducts[0].id}.`,
+        `Could not find product ${checkNonExistingProducts[0].id}.`,
       );
     }
 

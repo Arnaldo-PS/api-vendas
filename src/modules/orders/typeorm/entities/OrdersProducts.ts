@@ -7,8 +7,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import Order from './Order';
 
+import Order from './Order';
 import Product from '@modules/products/typeorm/entities/Product';
 
 @Entity('orders_products')
@@ -25,10 +25,10 @@ class OrdersProducts {
   product: Product;
 
   @Column()
-  order_id: string;
+  product_id: string;
 
   @Column()
-  product_id: string;
+  order_id: string;
 
   @Column('decimal')
   price: number;
