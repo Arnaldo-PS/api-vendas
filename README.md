@@ -32,7 +32,7 @@ yarn
 npm install
 ```
 
-Após essa instalação execute a aplicação com o comando `docker-compose up --build` (Após a primeira inicialização, nas próximas não é necessário utilizar '--build' do comando). O servidor estará em execução no endereço `http://localhost:3333`.
+Após essa instalação execute a aplicação com o comando `docker-compose up`. O servidor estará em execução no endereço `http://localhost:3333`.
 
 ## Contatos
 
