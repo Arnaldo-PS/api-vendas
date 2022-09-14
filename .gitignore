@@ -1,4 +1,4 @@
-.docker
+.docker/dbdata
 .idea/
 node_modules/
 .vscode/
@@ -8,8 +8,6 @@ temp/
 coverage
 ormconfig.json
 dist
-*Dockerfile*
-*docker-compose*
 
 uploads/*
 !uploads/.gitkeep
