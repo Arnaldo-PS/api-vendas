@@ -1,6 +1,5 @@
 import Redis, { Redis as RedisClient } from 'ioredis';
 import cacheConfig from '@config/cache';
-import { isThisSecond } from 'date-fns';
 
 export default class RedisCache {
   private client: RedisClient;
